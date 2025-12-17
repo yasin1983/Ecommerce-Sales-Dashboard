@@ -30,9 +30,9 @@ Data types: Automatically inferred by Wizard
 
 ### Example Queries (after import)
 
-## 📤 Example Request
+## Example Request
 
-```bash
+```sql
 -- Total Sales
 SELECT SUM(Sales) AS TotalSales
 FROM [ECommerce].[dbo].[Sales Data Analysis];
@@ -56,7 +56,7 @@ ORDER BY Hour;
 ### Subquery Examples  
 
 ### 1. Highest‑selling city
-``` bash
+``` sql
 SELECT City, TotalSales
 FROM (
     SELECT City, SUM(Sales) AS TotalSales
@@ -76,7 +76,7 @@ WHERE TotalSales = (
 
 ### 2. Products above average sales
 
-``` bash
+``` sql
 SELECT Product, SUM(Sales) AS TotalSales
 FROM [ECommerce].[dbo].[Sales Data Analysis]
 GROUP BY Product
@@ -94,7 +94,7 @@ HAVING SUM(Sales) > (
 ### CTE Examples
 ### 1. City sales totals
 
-``` bash
+``` sql
 WITH CitySales AS (
     SELECT City, SUM(Sales) AS TotalSales
     FROM [ECommerce].[dbo].[Sales Data Analysis]
@@ -108,7 +108,7 @@ ORDER BY TotalSales DESC;
 ```
 ### 2. Top product per city
 
-``` bash
+``` sql
 WITH ProductSales AS (
     SELECT City, Product, SUM(Sales) AS TotalSales,
            RANK() OVER (PARTITION BY City ORDER BY SUM(Sales) DESC) AS RankByCity
@@ -122,7 +122,7 @@ WHERE RankByCity = 1;
 ```
 ### 3. Products above average sales (CTE version)
 
-``` bash
+``` sql
 WITH ProductTotals AS (
     SELECT Product, SUM(Sales) AS TotalSales
     FROM [ECommerce].[dbo].[Sales Data Analysis]
